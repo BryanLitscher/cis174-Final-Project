@@ -1,0 +1,69 @@
+﻿@model ProductListViewModel
+@{
+	ViewData["Title"] = "Index";
+}
+
+
+
+<div class="row mx-3">
+	<div class="col-sm-3">
+		<h3>Color</h3>
+		<div class="list-group">
+			@for (int i = 0; i < @Model.Appearance.Count; i++)
+			{
+				<a href="#" class="list-group-item @((i==0)?"active":"")">@Model.Appearance[i].Color</a>
+			}
+		</div>
+		<h3>Texture</h3>
+		<div class="list-group">
+			@for ( int i = 0; i < @Model.Moisture.Count; i++)
+			{
+			<a href="#" class="list-group-item @((i==0)?"active":"")">@Model.Moisture[i].Moisture</a>
+			}
+		</div>
+	</div>
+
+
+	<div class="col-sm-9">
+		<div class="card-deck">
+			@for (int i = 0; i < @Model.Products.Count - 1; i++)
+			{
+				//https://www.codeply.com/go/nIB6oSbv6q
+				if (i % 2 == 0)
+				{
+					<div class="w-100 d-none d-sm-block d-md-none"><!-- wrap every 2 on sm--></div>
+				}
+				if (i % 3 == 0)
+				{
+					<div class="w-100 d-none d-md-block d-lg-none"><!-- wrap every 3 on md--></div>
+				}
+				if (i % 4 == 0)
+				{
+					<div class="w-100 d-none d-lg-block d-xl-none"><!-- wrap every 4 on lg--></div>
+				}
+				if (i % 5 == 0)
+				{
+					<div class="w-100 d-none d-xl-block"><!-- wrap every 5 on xl--></div>
+				}
+				<div class="card border-dark mx-1" style="width: 18rem;">
+					<img class="card-img-top" src="~/images/@Model.Products[i].ImageFile" alt="Card image cap">
+					<div class="card-body">
+						<h5 class="card-title">Card title</h5>
+						<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+						<ul>
+							<li>Weigth: 2.5 lb</li>
+							<li>Price: $25.00</li>
+						</ul>
+					</div>
+					<div class="card-footer">
+						<a href="#" class="btn btn-primary ">Go somewhere</a>
+					</div>
+				</div>
+				}
+		</div>
+	</div>
+</div>
+
+
+
+
