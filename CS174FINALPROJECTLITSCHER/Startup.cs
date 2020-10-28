@@ -23,6 +23,11 @@ namespace CS174FINALPROJECTLITSCHER
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddMemoryCache();
+            services.AddSession();
+
+            services.AddControllersWithViews().AddNewtonsoftJson();
             services.AddControllersWithViews();
         }
 
@@ -41,13 +46,17 @@ namespace CS174FINALPROJECTLITSCHER
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.UseSession();
             app.UseRouting();
 
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute(
+                    name: "custom",
+                    pattern: "{controller=Home}/{action=Index}/{AppearanceID}/{HardnessID}");
+
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");

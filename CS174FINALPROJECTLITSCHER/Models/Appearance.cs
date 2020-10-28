@@ -7,6 +7,7 @@ namespace CS174FINALPROJECTLITSCHER.Models
 {
     public class Appearance
     {
+        public string AppearanceID;
         public string Color;
     }
 }

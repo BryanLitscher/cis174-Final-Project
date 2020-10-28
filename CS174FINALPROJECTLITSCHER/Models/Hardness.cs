@@ -7,6 +7,7 @@ namespace CS174FINALPROJECTLITSCHER.Models
 {
     public class Hardness
     {
+        public string HardnessID;
         public String Moisture;
     }
 }

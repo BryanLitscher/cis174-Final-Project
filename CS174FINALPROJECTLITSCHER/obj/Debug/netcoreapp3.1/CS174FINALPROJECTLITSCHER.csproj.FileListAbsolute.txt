@@ -86,8 +86,6 @@ C:\Users\bryan\source\repos\CS174FINALPROJECTLITSCHER\CS174FINALPROJECTLITSCHER\
 C:\Users\bryan\source\repos\CS174FINALPROJECTLITSCHER\CS174FINALPROJECTLITSCHER\bin\Debug\netcoreapp3.1\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\bryan\source\repos\CS174FINALPROJECTLITSCHER\CS174FINALPROJECTLITSCHER\bin\Debug\netcoreapp3.1\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\bryan\source\repos\CS174FINALPROJECTLITSCHER\CS174FINALPROJECTLITSCHER\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
-C:\Users\bryan\source\repos\CS174FINALPROJECTLITSCHER\CS174FINALPROJECTLITSCHER\obj\Debug\netcoreapp3.1\CS174FINALPROJECTLITSCHER.csproj.CoreCompileInputs.cache
-C:\Users\bryan\source\repos\CS174FINALPROJECTLITSCHER\CS174FINALPROJECTLITSCHER\obj\Debug\netcoreapp3.1\CS174FINALPROJECTLITSCHER.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\bryan\source\repos\CS174FINALPROJECTLITSCHER\CS174FINALPROJECTLITSCHER\obj\Debug\netcoreapp3.1\CS174FINALPROJECTLITSCHER.csproj.CopyComplete
 C:\Users\bryan\source\repos\CS174FINALPROJECTLITSCHER\CS174FINALPROJECTLITSCHER\obj\Debug\netcoreapp3.1\CS174FINALPROJECTLITSCHER.dll
 C:\Users\bryan\source\repos\CS174FINALPROJECTLITSCHER\CS174FINALPROJECTLITSCHER\obj\Debug\netcoreapp3.1\CS174FINALPROJECTLITSCHER.pdb
@@ -110,3 +108,8 @@ C:\Users\bryan\source\repos\CS174FINALPROJECTLITSCHER\CS174FINALPROJECTLITSCHER\
 C:\Users\bryan\source\repos\CS174FINALPROJECTLITSCHER\CS174FINALPROJECTLITSCHER\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\_ViewImports.cshtml.g.cs
 C:\Users\bryan\source\repos\CS174FINALPROJECTLITSCHER\CS174FINALPROJECTLITSCHER\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\_ViewStart.cshtml.g.cs
 C:\Users\bryan\source\repos\CS174FINALPROJECTLITSCHER\CS174FINALPROJECTLITSCHER\obj\Debug\netcoreapp3.1\Razor\Views\_ViewStart.cshtml.g.cs
+C:\Users\bryan\source\repos\CS174FINALPROJECTLITSCHER\CS174FINALPROJECTLITSCHER\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\bryan\source\repos\CS174FINALPROJECTLITSCHER\CS174FINALPROJECTLITSCHER\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\bryan\source\repos\CS174FINALPROJECTLITSCHER\CS174FINALPROJECTLITSCHER\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
+C:\Users\bryan\source\repos\CS174FINALPROJECTLITSCHER\CS174FINALPROJECTLITSCHER\obj\Debug\netcoreapp3.1\CS174FINALPROJECTLITSCHER.csproj.CoreCompileInputs.cache
+C:\Users\bryan\source\repos\CS174FINALPROJECTLITSCHER\CS174FINALPROJECTLITSCHER\obj\Debug\netcoreapp3.1\CS174FINALPROJECTLITSCHER.MvcApplicationPartsAssemblyInfo.cache
