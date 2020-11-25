@@ -8,6 +8,9 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.EntityFrameworkCore;
+using CS174FINALPROJECTLITSCHER.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace CS174FINALPROJECTLITSCHER
 {
@@ -28,7 +31,20 @@ namespace CS174FINALPROJECTLITSCHER
             services.AddSession();
 
             services.AddControllersWithViews().AddNewtonsoftJson();
+
+            services.AddDbContext<CS174FinalProjectLitscherContext>(options =>
+    options.UseSqlServer(Configuration.GetConnectionString("CS174FinalProjectLitscherContext")));
+
             services.AddControllersWithViews();
+            services.AddIdentity<User, IdentityRole>(
+                options =>
+                {
+                    options.Password.RequiredLength = 6;
+                    options.Password.RequireNonAlphanumeric = false;
+                    options.Password.RequireDigit = false;
+                })
+                .AddEntityFrameworkStores<CS174FinalProjectLitscherContext>()
+                .AddDefaultTokenProviders();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,10 +65,17 @@ namespace CS174FINALPROJECTLITSCHER
             app.UseSession();
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
+                // route for Admin area
+                endpoints.MapAreaControllerRoute(
+                    name: "admin",
+                    areaName: "Admin",
+                    pattern: "Admin/{controller=Book}/{action=Index}/{id?}");                // route for Admin area
+
                 endpoints.MapControllerRoute(
                     name: "custom",
                     pattern: "{controller=Home}/{action=Index}/{AppearanceID}/{HardnessID}");

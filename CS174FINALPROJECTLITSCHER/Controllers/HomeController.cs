@@ -6,11 +6,19 @@ using Microsoft.AspNetCore.Mvc;
 using CS174FINALPROJECTLITSCHER.Models;
 using Newtonsoft.Json;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
+
 namespace CS174FINALPROJECTLITSCHER.Controllers
 {
     public class HomeController : Controller 
     {
-
+		public IActionResult Add()
+        {
+			//runs on log in error
+			TempData["message"] ="Item not added to cart";
+			return RedirectToAction("Index", "Home");
+		}
+		[Authorize]
 		[HttpPost]
 		public IActionResult Add(ProductListViewModel p)
 		{

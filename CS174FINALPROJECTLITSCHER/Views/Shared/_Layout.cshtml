@@ -1,4 +1,16 @@
-﻿<!DOCTYPE html>
+﻿
+@{
+	// get cart from session
+	//var cart = new Cart(Context);
+
+	// use current controller or area to determine if tab is active
+	var current = ViewContext.RouteData.Values["area"]?.ToString() ??
+		ViewContext.RouteData.Values["controller"]?.ToString();
+}
+
+
+
+<!DOCTYPE html>
 
 <html>
 <head>
@@ -12,8 +24,83 @@
 	@*The locally installed popper would not work with the drop down button*@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 	<script src="~/lib/bootstrap/js/bootstrap.min.js"></script>
+	@RenderSection("scripts", false)
 </head>
 <body>
+	<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu"
+				aria-controls="menu" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="menu">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item @Nav.Active("Home", current)">
+					<a class="nav-link" asp-action="Index" asp-controller="Home" asp-area="">
+						<span class="fas fa-home"></span>&nbsp;Home
+					</a>
+				</li>
+				<li class="nav-item @Nav.Active("Book", current)">
+					<a class="nav-link" asp-action="List" asp-controller="Book" asp-area="">
+						<span class="fas fa-book-open"></span>&nbsp;Books
+					</a>
+				</li>
+				<li class="nav-item @Nav.Active("Author", current)">
+					<a class="nav-link" asp-action="List" asp-controller="Author" asp-area="">
+						<span class="fas fa-feather-alt"></span>&nbsp;Authors
+					</a>
+				</li>
+			</ul>
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item @Nav.Active("Cart", current)">
+					<a class="nav-link" asp-action="Index" asp-controller="Cart" asp-area="">
+						<span class="fas fa-shopping-cart"></span>&nbsp;Cart
+						@*<span class="badge badge-light">@cart.Count</span>*@
+					</a>
+				</li>
+
+				<!-- Login buttons and links -->
+				@using Microsoft.AspNetCore.Identity
+				@inject SignInManager<User> signInManager
+
+				@if (signInManager.IsSignedIn(User))
+				{
+					// signed-in user - Log Out button and username
+					<li class="nav-item">
+						<form method="post" asp-action="LogOut" asp-controller="Account"
+							  asp-area="">
+							<input type="submit" value="Log Out"
+								   class="btn btn-outline-light" />
+							<span class="text-light">@User.Identity.Name</span>
+						</form>
+					</li>
+				}
+				else
+				{
+					var action = ViewContext.RouteData.Values["action"]?.ToString();
+
+					// anonymous user - Register link and Log In button
+					<li class="nav-item @Nav.Active("Register", action)">
+						<a asp-action="Register" asp-controller="Account"
+						   asp-area="" class="nav-link">
+							<span class="fas fa-edit"></span>&nbsp;Register
+						</a>
+					</li>
+					<li class="nav-item">
+						<a asp-action="Login" asp-controller="Account"
+						   asp-area="" class="btn btn-outline-light">Log In</a>
+					</li>
+				}
+
+				<li class="nav-item @Nav.Active("Admin", current)">
+					<a class="nav-link" asp-action="Index" asp-controller="User" asp-area="Admin">
+						<span class="fas fa-cog"></span>&nbsp;Admin
+					</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+
 	<header class="text-center text-white">
 		<h1 class="bg-primary mt-3 p-3">Cheese Store</h1>
 
@@ -24,18 +111,18 @@
 		}
 
 		@* show link to Favorites page unless on Favorites page
-		@if (!ViewContext.View.Path.Contains("Favorites"))
-		{
-			var session = new NFLSession(Context.Session);
-			<h5 class="bg-info p-2">
-				<a asp-controller="Favorites" asp-action="Index" class="text-white">
-					@(session.GetName() == null ? "My" : session.GetName() + "'s")
-					Favorite Teams
-				</a>
+			@if (!ViewContext.View.Path.Contains("Favorites"))
+			{
+				var session = new NFLSession(Context.Session);
+				<h5 class="bg-info p-2">
+					<a asp-controller="Favorites" asp-action="Index" class="text-white">
+						@(session.GetName() == null ? "My" : session.GetName() + "'s")
+						Favorite Teams
+					</a>
 
-		<span class="badge badge-light">@(session.GetMyTeamCount())</span>
-		</h5>
-		}
+			<span class="badge badge-light">@(session.GetMyTeamCount())</span>
+			</h5>
+			}
 		*@
 		@if (TempData["currentOrderAmount"] != null)
 		{
