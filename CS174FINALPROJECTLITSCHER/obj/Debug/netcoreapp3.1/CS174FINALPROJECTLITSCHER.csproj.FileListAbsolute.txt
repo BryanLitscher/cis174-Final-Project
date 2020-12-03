@@ -163,3 +163,5 @@ C:\Users\bryan\source\repos\CS174FINALPROJECTLITSCHER\CS174FINALPROJECTLITSCHER\
 C:\Users\bryan\source\repos\CS174FINALPROJECTLITSCHER\CS174FINALPROJECTLITSCHER\obj\Debug\netcoreapp3.1\Razor\Views\Account\Login.cshtml.g.cs
 C:\Users\bryan\source\repos\CS174FINALPROJECTLITSCHER\CS174FINALPROJECTLITSCHER\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\User\Index.cshtml.g.cs
 C:\Users\bryan\source\repos\CS174FINALPROJECTLITSCHER\CS174FINALPROJECTLITSCHER\obj\Debug\netcoreapp3.1\Razor\Views\Account\AccessDenied.cshtml.g.cs
+C:\Users\bryan\source\repos\CS174FINALPROJECTLITSCHER\CS174FINALPROJECTLITSCHER\obj\Debug\netcoreapp3.1\Razor\Views\Cart\Index.cshtml.g.cs
+C:\Users\bryan\source\repos\CS174FINALPROJECTLITSCHER\CS174FINALPROJECTLITSCHER\obj\Debug\netcoreapp3.1\Razor\Views\Cart\Checkout.cshtml.g.cs

@@ -45,6 +45,8 @@ namespace CS174FINALPROJECTLITSCHER
                 })
                 .AddEntityFrameworkStores<CS174FinalProjectLitscherContext>()
                 .AddDefaultTokenProviders();
+
+            services.AddTransient<ICS174FinalProjectLitscherUnitOfWork, CS174FinalProjectLitscherUnitOfWork>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -25,6 +25,10 @@ namespace CS174FINALPROJECTLITSCHER.Migrations
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
 
+                    b.Property<string>("Color")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("AppearanceID");
 
                     b.ToTable("Appearances");
@@ -32,15 +36,18 @@ namespace CS174FINALPROJECTLITSCHER.Migrations
                     b.HasData(
                         new
                         {
-                            AppearanceID = "all"
+                            AppearanceID = "all",
+                            Color = "All"
                         },
                         new
                         {
-                            AppearanceID = "white"
+                            AppearanceID = "white",
+                            Color = "White"
                         },
                         new
                         {
-                            AppearanceID = "orange"
+                            AppearanceID = "orange",
+                            Color = "Orange"
                         });
                 });
 
@@ -111,6 +118,9 @@ namespace CS174FINALPROJECTLITSCHER.Migrations
                     b.Property<string>("CartItemDescription")
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("CartItemName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("CartItemQuantity")
                         .HasColumnType("int");
@@ -804,7 +814,7 @@ namespace CS174FINALPROJECTLITSCHER.Migrations
             modelBuilder.Entity("CS174FINALPROJECTLITSCHER.Models.CartItem", b =>
                 {
                     b.HasOne("CS174FINALPROJECTLITSCHER.Models.Cart", "Cart")
-                        .WithMany("carts")
+                        .WithMany("cartItems")
                         .HasForeignKey("CartId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -889,7 +899,7 @@ namespace CS174FINALPROJECTLITSCHER.Migrations
 
             modelBuilder.Entity("CS174FINALPROJECTLITSCHER.Models.Cart", b =>
                 {
-                    b.Navigation("carts");
+                    b.Navigation("cartItems");
                 });
 
             modelBuilder.Entity("CS174FINALPROJECTLITSCHER.Models.CartCustomer", b =>

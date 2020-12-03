@@ -13,7 +13,7 @@ namespace CS174FINALPROJECTLITSCHER.Models
         public string  AppearanceID { get; set; }
 
         [Required(ErrorMessage = "Please enter a value.")]
-        public string Color;
+        public string Color { get; set; }
 
         public ICollection<Product> Products { get; set; }
     }

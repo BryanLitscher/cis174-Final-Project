@@ -1,0 +1,79 @@
+﻿@*
+	For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model CartViewModel
+
+
+
+<form asp-action="Clear" method="post">
+	<ul class="list-group mb-4">
+		<li class="list-group-item">
+			<div class="row">
+				<div class="col">
+					Total Merchandise: @Model.TotalValue.ToString("C2")
+				</div>
+				<div class="col">
+					<div class="float-right">
+						<a asp-action="Checkout" class="btn btn-primary">Checkout</a>
+						<button type="submit" class="btn btn-primary">Clear Cart</button>
+						<a asp-action="Index" asp-controller="Home">Back to Shopping</a>
+					</div>
+
+				</div>
+			</div>
+		</li>
+	</ul>
+</form>
+
+<div class="card-deck p-4">
+
+	@for (int i = 0; i < @Model.Products.Count; i++)
+	{
+		//https://www.codeply.com/go/nIB6oSbv6q
+		Product c = Model.Products[i];
+		if (i % 2 == 0)
+		{
+			<div class="w-100 d-none d-sm-block d-md-none"><!-- wrap every 2 on sm--></div>
+		}
+		if (i % 3 == 0)
+		{
+			<div class="w-100 d-none d-md-block d-lg-none"><!-- wrap every 3 on md--></div>
+		}
+		if (i % 4 == 0)
+		{
+			<div class="w-100 d-none d-lg-block d-xl-none"><!-- wrap every 4 on lg--></div>
+		}
+		if (i % 5 == 0)
+		{
+			<div class="w-100 d-none d-xl-block"><!-- wrap every 5 on xl--></div>
+		}
+		<div class="card border-dark mx-1" style="width: 18rem;">
+			<img class="card-img-top" src="~/images/@c.ImageFile" alt="Card image cap">
+			<div class="card-body">
+				<h5 class="card-title">@c.productName</h5>
+				<p class="card-text">@c.productDesc</p>
+				<ul>
+					<li>Weigth: 2.5 lb</li>
+					<li>Unit Price: @c.productPrice.ToString("c2")</li>
+					<li>Quantity: @c.quantityOrdered</li>
+					<li>Total Price: @((c.quantityOrdered*c.productPrice).ToString("C2"))</li>
+				</ul>
+			</div>
+		</div>
+	}
+
+	@*//Pad last row of card deck so that the odd cards
+	//are not really big*@
+	@for (int i = 0; i < (5 - (@Model.Products.Count % 5)) && @Model.Products.Count%5 > 0; i++)
+	{<div class="card border-dark mx-1 d-none d-xl-block invisible" style="width: 18rem;"></div>}
+	@for (int i = 0; i < (4 - (@Model.Products.Count % 4)) && @Model.Products.Count % 4 > 0; i++)
+	{<div class="card border-dark mx-1 d-none d-lg-block d-xl-none invisible" style="width: 18rem;"></div>}
+	@for (int i = 0; i < (3 - (@Model.Products.Count % 3)) && @Model.Products.Count % 3 > 0; i++)
+	{<div class="card border-dark mx-1 d-none d-md-block d-lg-none invisible" style="width: 18rem;"></div>}
+	@for (int i = 0; i < (2 - (@Model.Products.Count % 2)) && @Model.Products.Count % 2 > 0; i++)
+	{<div class="card border-dark mx-1 d-none d-sm-block d-md-none invisible" style="width: 18rem;"></div>}
+</div>
+

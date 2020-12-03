@@ -11,6 +11,8 @@ namespace CS174FINALPROJECTLITSCHER.Models
         [StringLength(200)]
         public string CartItemDescription { get; set; }
 
+        public string CartItemName { get; set; }
+
         public int CartItemQuantity { get; set; }
         public double CartItemUnitPrice { get; set; }
 

@@ -11,6 +11,6 @@ namespace CS174FINALPROJECTLITSCHER.Models
         public CartCustomer cartCustomer { get; set; }   //navigation property
         public DateTime CartDateTime { get; set; }
 
-        public ICollection<CartItem> carts { get; set; }  //navigation property
+        public ICollection<CartItem> cartItems { get; set; }  //navigation property
     }
 }
