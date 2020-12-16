@@ -18,7 +18,6 @@
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Components\" />
-    <Folder Include="TagHelpers\" />
     <Folder Include="Views\Shared\Components\" />
     <Folder Include="wwwroot\images\" />
   </ItemGroup>

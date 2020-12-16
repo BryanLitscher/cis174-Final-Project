@@ -68,7 +68,7 @@ namespace CS174FINALPROJECTLITSCHER.Migrations
 
                     b.HasIndex("CartCustomerId");
 
-                    b.ToTable("Cart");
+                    b.ToTable("Carts");
 
                     b.HasData(
                         new
@@ -94,7 +94,7 @@ namespace CS174FINALPROJECTLITSCHER.Migrations
 
                     b.HasKey("CartCustomerId");
 
-                    b.ToTable("CartCustomer");
+                    b.ToTable("CartCustomers");
 
                     b.HasData(
                         new
@@ -132,7 +132,7 @@ namespace CS174FINALPROJECTLITSCHER.Migrations
 
                     b.HasIndex("CartId");
 
-                    b.ToTable("CartItem");
+                    b.ToTable("CartItems");
 
                     b.HasData(
                         new

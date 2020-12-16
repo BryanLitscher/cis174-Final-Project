@@ -20,7 +20,7 @@ using CS174FINALPROJECTLITSCHER.Models;
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"8ecddd06736bf824b0542e20096307b65cf77042", @"/Views/Cart/Checkout.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"3d0a24a78d16a5eac6ff7876edd4ed96084ef705", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"2582543a1731d2a14ca95300b4c7afc0d9aaef60", @"/Views/_ViewImports.cshtml")]
     public class Views_Cart_Checkout : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<CartViewModel>
     {
         #pragma warning disable 1998

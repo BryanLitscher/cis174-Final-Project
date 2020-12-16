@@ -5,7 +5,7 @@ using CS174FINALPROJECTLITSCHER.Models;
 using CS174FINALPROJECTLITSCHER.Controllers;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
-
+using Microsoft.AspNetCore.Http;
 
 namespace CS174FINALPROJECTLITSCHERTests
 {
@@ -44,7 +44,7 @@ namespace CS174FINALPROJECTLITSCHERTests
             //assert
             Assert.Equal(15, result);
         }
-
+        //test public IActionResult Add()v
         [Fact]
 
         public void AddMethod_ReturnsRedirectToActionResult()
@@ -80,6 +80,25 @@ namespace CS174FINALPROJECTLITSCHERTests
 
 
 
+        //Unable to create mock session
+
+        //[Fact]
+        //public void AddMethodParameter_ReturnsRedirectToIndex()
+        //{
+        //    //arrange
+        //    var session = new Mock<OrdersSession>();
+        //    var unit = GetUnitOfWork();
+        //    var productListVM = new ProductListViewModel();
+        //    productListVM.SelectedProductID = 1;
+        //    var temp = new Mock<ITempDataDictionary>();
+        //    var controller = new HomeController(unit) { TempData = temp.Object };
+
+        //    //act
+        //    var m = controller.Add(productListVM);
+
+        //    //assert
+        //    Assert.IsType<RedirectToActionResult>(m);
+        //}
 
 
 

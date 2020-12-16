@@ -1,4 +1,4 @@
-﻿@{
+﻿ @{
 	Layout = "_Layout";
 
 	var current = ViewContext.RouteData.Values["controller"]?.ToString();
@@ -11,29 +11,23 @@
 
 <ul class="nav nav-tabs mt-2 mb-3">
 	<li class="nav-item">
-		<a asp-action="Index" asp-controller="Book"
-		   class="nav-link @Nav.Active("Book", current)">
-			Manage Books
+		<a asp-action="Index" asp-controller="Product"
+		   class="nav-link @Nav.Active("Product", current)">
+			Manage Catalog
 		</a>
 	</li>
 	<li class="nav-item">
-		<a asp-action="Index" asp-controller="Author"
-		   class="nav-link @Nav.Active("Author", current)">
-			Manage Authors
+		<a asp-action="Index" asp-controller="Order"
+		   class="nav-link @Nav.Active("Order", current)">
+			Manage Orders
 		</a>
 	</li>
-	<li class="nav-item">
-		<a asp-action="Index" asp-controller="Genre"
-		   class="nav-link @Nav.Active("Genre", current)">
-			Manage Genres
-		</a>
-	</li>
-	<li class="nav-item">
+	@*<li class="nav-item">
 		<a asp-action="Index" asp-controller="User"
 		   class="nav-link @Nav.Active("User", current)">
 			Manage Users
 		</a>
-	</li>
+	</li>*@
 </ul>
 
 @RenderBody()

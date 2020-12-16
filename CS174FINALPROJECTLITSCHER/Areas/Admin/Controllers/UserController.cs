@@ -8,10 +8,11 @@ using CS174FINALPROJECTLITSCHER.Models;
 namespace CS174FINALPROJECTLITSCHER.Areas.Admin.Controllers
 {
 
-    //[Authorize(Roles = "Admin")]
-    //[Area("Admin")]
+    [Authorize(Roles = "Admin")]
+    [Area("Admin")]
     public class UserController : Controller
     {
+
         private UserManager<User> userManager;
         private RoleManager<IdentityRole> roleManager;
         public UserController(UserManager<User> userMngr,
@@ -24,6 +25,7 @@ namespace CS174FINALPROJECTLITSCHER.Areas.Admin.Controllers
         public async Task<IActionResult> Index()
         {
             List<User> users = new List<User>();
+
             foreach (User user in userManager.Users)
             {
                 user.RoleNames = await userManager.GetRolesAsync(user);
@@ -41,6 +43,7 @@ namespace CS174FINALPROJECTLITSCHER.Areas.Admin.Controllers
         public async Task<IActionResult> Delete(string id)
         {
             User user = await userManager.FindByIdAsync(id);
+   
             if (user != null)
             {
                 IdentityResult result = await userManager.DeleteAsync(user);
@@ -69,7 +72,7 @@ namespace CS174FINALPROJECTLITSCHER.Areas.Admin.Controllers
 
             if (ModelState.IsValid)
             {
-                var user = new User { UserName = model.Username };
+                var user = new User { UserName = model.Username , Email = model.Email};
                 var result = await userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

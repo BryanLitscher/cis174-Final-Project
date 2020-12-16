@@ -22,6 +22,10 @@ namespace CS174FINALPROJECTLITSCHER.Models
         public DbSet<Appearance> Appearances { get; set; }
         public DbSet<Hardness> Hardnesses { get; set; }
 
+        public DbSet<CartCustomer> CartCustomers { get; set; }
+        public DbSet<Cart> Carts { get; set; }
+        public DbSet<CartItem> CartItems { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) { base.OnConfiguring(optionsBuilder); }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) { 

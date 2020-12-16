@@ -1,0 +1,28 @@
+﻿@model Cart
+@{
+	ViewData["Title"] = "PickTicket";
+	Layout = "";
+}
+
+<h1>PickTicket</h1>
+
+<h2>Cust ID: @Model.cartCustomer.CartCustomerId</h2>
+<h2>Cust Name: @Model.cartCustomer.CartName</h2>
+
+<div class="p-lg-5">
+	<table class="table table-bordered table-striped table-sm">
+		<thead>
+			<tr><th>Product Id</th><th>Quantity</th><th>Name</th></tr>
+		</thead>
+		<tbody>
+			@foreach(CartItem ci in Model.cartItems)
+			{
+				<tr>
+					<td>@ci.CartItemId</td>
+					<td>@ci.CartItemQuantity</td>
+					<td>@ci.CartItemName</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+</div>

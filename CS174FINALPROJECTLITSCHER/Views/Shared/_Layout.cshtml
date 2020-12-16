@@ -1,4 +1,4 @@
-﻿
+﻿@using Microsoft.AspNetCore.Http
 @{
 	// get cart from session
 	//var cart = new Cart(Context);
@@ -52,12 +52,6 @@
 				</li>*@
 			</ul>
 			<ul class="navbar-nav ml-auto">
-				<li class="nav-item @Nav.Active("Cart", current)">
-					<a class="nav-link" asp-action="Index" asp-controller="Cart" asp-area="">
-						<span class="fas fa-shopping-cart"></span>&nbsp;Cart
-						@*<span class="badge badge-light">@cart.Count</span>*@
-					</a>
-				</li>
 
 				<!-- Login buttons and links -->
 				@using Microsoft.AspNetCore.Identity
@@ -65,6 +59,12 @@
 
 				@if (signInManager.IsSignedIn(User))
 				{
+					<li class="nav-item @Nav.Active("Home", current)">
+						<a class="nav-link" asp-action="Index" asp-controller="Cart" asp-area="">
+							<span class="fas fa-shopping-cart"></span>&nbsp;Cart
+							@*<span class="badge badge-light">@cart.Count</span>*@
+						</a>
+					</li>
 					// signed-in user - Log Out button and username
 					<li class="nav-item">
 						<form method="post" asp-action="LogOut" asp-controller="Account"
@@ -72,6 +72,7 @@
 							<input type="submit" value="Log Out"
 								   class="btn btn-outline-light" />
 							<span class="text-light">@User.Identity.Name</span>
+							<span class="text-light">@Context.Session.GetString("UserEmail")</span>
 						</form>
 					</li>
 				}
@@ -93,7 +94,7 @@
 				}
 
 				<li class="nav-item @Nav.Active("Admin", current)">
-					<a class="nav-link" asp-action="Index" asp-controller="User" asp-area="Admin">
+					<a class="nav-link" asp-action="Index" asp-controller="Order" asp-area="Admin">
 						<span class="fas fa-cog"></span>&nbsp;Admin
 					</a>
 				</li>
@@ -110,27 +111,10 @@
 			<h4 class="bg-success p-2">@TempData["message"]</h4>
 		}
 
-		@* show link to Favorites page unless on Favorites page
-			@if (!ViewContext.View.Path.Contains("Favorites"))
-			{
-				var session = new NFLSession(Context.Session);
-				<h5 class="bg-info p-2">
-					<a asp-controller="Favorites" asp-action="Index" class="text-white">
-						@(session.GetName() == null ? "My" : session.GetName() + "'s")
-						Favorite Teams
-					</a>
-
-			<span class="badge badge-light">@(session.GetMyTeamCount())</span>
-			</h5>
-			}
-		*@
 		@if (TempData["currentOrderAmount"] != null)
 		{
 			<h5 class="bg-info p-2">
 				Current Order Amount: @TempData["currentOrderAmount"]
-				<a asp-controller="Favorites" asp-action="Index" class="text-white">
-					Review and Checkout
-				</a>
 			</h5>
 		}
 	</header>

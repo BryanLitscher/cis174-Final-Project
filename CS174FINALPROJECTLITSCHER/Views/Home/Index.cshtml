@@ -10,55 +10,55 @@
 }
 
 
-	<div class="row mx-3">
-		<div class="col-sm-3">
-			<h3>Color</h3>
-			<div class="list-group">
-				@for (int i = 0; i < @Model.Appearance.Count; i++)
-				{
-					<a class="list-group-item @((@Model.Appearance[i].AppearanceID == @Model.ActiveAppearance) ? "active" : "")"
-					   asp-controller="home"
-					   asp-action="index"
-					   asp-route-AppearanceID="@Model.Appearance[i].AppearanceID"
-					   asp-route-HardnessID=@Model.ActiveTexture>@Model.Appearance[i].Color</a>
-				}
-			</div>
-			<h3>Texture</h3>
-			<div class="list-group">
-				@for (int i = 0; i < @Model.Moisture.Count; i++)
-				{
-					<a class="list-group-item @((@Model.Moisture[i].HardnessID == @Model.ActiveTexture) ? "active" : "")"
-					   asp-controller="home"
-					   asp-action="index"
-					   asp-route-AppearanceID=@Model.ActiveAppearance
-					   asp-route-HardnessID="@Model.Moisture[i].HardnessID">@Model.Moisture[i].Moisture</a>
-				}
-			</div>
+<div class="row mx-3">
+	<div class="col-sm-3">
+		<h3>Color</h3>
+		<div class="list-group">
+			@for (int i = 0; i < @Model.Appearance.Count; i++)
+			{
+				<a class="list-group-item @((@Model.Appearance[i].AppearanceID == @Model.ActiveAppearance) ? "active" : "")"
+				   asp-controller="home"
+				   asp-action="index"
+				   asp-route-AppearanceID="@Model.Appearance[i].AppearanceID"
+				   asp-route-HardnessID=@Model.ActiveTexture>@Model.Appearance[i].Color</a>
+			}
 		</div>
+		<h3>Texture</h3>
+		<div class="list-group">
+			@for (int i = 0; i < @Model.Moisture.Count; i++)
+			{
+				<a class="list-group-item @((@Model.Moisture[i].HardnessID == @Model.ActiveTexture) ? "active" : "")"
+				   asp-controller="home"
+				   asp-action="index"
+				   asp-route-AppearanceID=@Model.ActiveAppearance
+				   asp-route-HardnessID="@Model.Moisture[i].HardnessID">@Model.Moisture[i].Moisture</a>
+			}
+		</div>
+	</div>
 
 
 
-		<div class="col-sm-9">
-			<form asp-action="Add" method="post">
-				@if (route.Values["AppearanceID"] == null)
-				{
-					<input type="hidden" name="ActiveAppearance" value="all" />
-				}
-				else
-				{
-					<input type="hidden" name="ActiveAppearance" value="@route.Values["AppearanceID"]" />
-				}
+	<div class="col-sm-9">
+		<form asp-action="Add" method="post">
+			@if (route.Values["AppearanceID"] == null)
+			{
+				<input type="hidden" name="ActiveAppearance" value="all" />
+			}
+			else
+			{
+				<input type="hidden" name="ActiveAppearance" value="@route.Values["AppearanceID"]" />
+			}
 
 
-				@if (route.Values["HardnessID"] == null)
+			@if (route.Values["HardnessID"] == null)
 
-				{
-					<input type="hidden" name="ActiveTexture" value="all" />
-				}
-				else
-				{
-					<input type="hidden" name="ActiveTexture" value="@route.Values["HardnessID"]" />
-				}
+			{
+				<input type="hidden" name="ActiveTexture" value="all" />
+			}
+			else
+			{
+				<input type="hidden" name="ActiveTexture" value="@route.Values["HardnessID"]" />
+			}
 
 
 
@@ -95,7 +95,7 @@
 							</ul>
 						</div>
 						<div class="card-footer row">
-							<button type="submit" name="SelectedProductID" value=@Model.Products[i].productID class="btn btn-primary ">
+							<button type="submit" title="Select" name="SelectedProductID" value=@Model.Products[i].productID class="btn btn-primary ">
 								@((Model.Products[i].quantityOrdered > 0) ? "More" : "Order")
 								<span class="badge badge-pill">@((Model.Products[i].quantityOrdered>0)? Model.Products[i].quantityOrdered.ToString() : "")</span>
 							</button>
@@ -118,9 +118,10 @@
 				@for (int i = 0; i < (2 - (@Model.Products.Count % 2)) && @Model.Products.Count % 2 > 0; i++)
 				{<div class="card border-dark mx-1 d-none d-sm-block d-md-none invisible" style="width: 18rem;"></div>}
 			</div>
-			</form>
-		</div>
+		</form>
 	</div>
+</div>
+
 
 
 

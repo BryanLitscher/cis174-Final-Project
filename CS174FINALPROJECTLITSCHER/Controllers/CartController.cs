@@ -7,11 +7,13 @@ using Microsoft.AspNetCore.Http;
 using CS174FINALPROJECTLITSCHER.Models;
 
 
+
 namespace CS174FINALPROJECTLITSCHER.Controllers
 {
     public class CartController : Controller
     {
         private ICS174FinalProjectLitscherUnitOfWork data { get; set; }
+        
 
         public CartController(ICS174FinalProjectLitscherUnitOfWork unit)
         {
@@ -36,12 +38,12 @@ namespace CS174FINALPROJECTLITSCHER.Controllers
         }
 
 
-
         public ViewResult Checkout()
         {
             var session = new OrdersSession(HttpContext.Session);
             var cheeses = session.GetProducts();
             string myName = this.User.Identity.Name;
+
 
             ///////////////////////////////////
             ///write to cartcustomer
@@ -52,13 +54,32 @@ namespace CS174FINALPROJECTLITSCHER.Controllers
                 Where = b => b.CartName == myName.ToLower()
             };
 
-            //List<CartCustomer> Store = data.CartCustomers.List(new QueryOptions<CartCustomer> { }).ToList();
+            
             List<CartCustomer> cartCust = data.CartCustomers.List(qo).ToList();
+
+            //Insert record if customer exists.  Update record if 
+            //Email address has changed.
 
             if(cartCust.Count == 0)
             {
-                data.CartCustomers.Insert(new CartCustomer { CartName = myName.ToLower() });
+                data.CartCustomers.Insert(new CartCustomer { 
+                    CartName = myName.ToLower() ,
+                    CartEmail = HttpContext.Session.GetString("UserEmail")
+                });
                 data.CartCustomers.Save();
+            }
+            else
+            {
+                if (! String.IsNullOrEmpty(HttpContext.Session.GetString("UserEmail")))
+                {
+                    if (HttpContext.Session.GetString("UserEmail") != cartCust[0].CartEmail)
+                    {
+                        CartCustomer cc = cartCust[0];
+                        cc.CartEmail = HttpContext.Session.GetString("UserEmail");
+                        data.CartCustomers.Update(cc);
+                        data.CartCustomers.Save();
+                    }
+                }
             }
 
             ///
@@ -95,20 +116,21 @@ namespace CS174FINALPROJECTLITSCHER.Controllers
             ///write to cartitems
             //////////////////////////////////
 
-
-            var test = new CartItem()
+            foreach ( Product c in cheeses)
             {
-                CartId=cartID,
-                CartItemDescription = cheeses[0].productDesc,
-                CartItemQuantity = cheeses[0].quantityOrdered,
-                CartItemUnitPrice = cheeses[0].productPrice
-            };
+                var line = new CartItem()
+                {
+                    CartId=cartID,
+                    CartItemDescription = c.productDesc,
+                    CartItemQuantity = c.quantityOrdered,
+                    CartItemUnitPrice = c.productPrice,
+                    CartItemName=c.productName
+                };
 
-            // cart.cartItems.Add(cart);
+                data.CartItems.Insert(line);
 
-            data.CartItems.Insert(test);
-
-            data.CartItems.Save();
+                data.CartItems.Save();
+            }
 
 
             //var session = new OrdersSession(HttpContext.Session);
@@ -126,6 +148,7 @@ namespace CS174FINALPROJECTLITSCHER.Controllers
                 UserName= myName
             };
 
+            session.SetProducts(new List<Product>());
             //get id on insert/add
             //https://entityframework.net/retrieve-id-of-inserted-entity
             return View(model);

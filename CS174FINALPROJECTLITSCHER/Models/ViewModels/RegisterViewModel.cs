@@ -4,6 +4,11 @@ namespace CS174FINALPROJECTLITSCHER.Models
 {
     public class RegisterViewModel
     {
+        [Required(ErrorMessage = "The Email field is required.")]
+        [EmailAddress(ErrorMessage = "The Email field is not a valid e-mail address.")]
+        public string Email { get; set; }
+
+
         [Required(ErrorMessage = "Please enter a username.")]
         [StringLength(255)]
         public string Username { get; set; }

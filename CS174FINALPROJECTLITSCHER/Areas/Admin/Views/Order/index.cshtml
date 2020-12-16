@@ -1,0 +1,32 @@
+﻿
+@*@model AdminCartViewModel*@
+@model List<Cart>
+@*
+	For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<h1>Order management</h1>
+
+<div class="p-lg-5">
+	<table class="table table-bordered table-striped table-sm">
+		<thead>
+			<tr><th>Cart Id</th><th>Customer ID</th><th>Email</th><th>Time Stamp</th><th></th><th></th></tr>
+		</thead>
+		<tbody>
+			@foreach (Cart c in Model)
+			{
+			<tr>
+				<td>@c.CartId</td>
+				<td>@c.CartCustomerId </td>
+				<td>@c.cartCustomer.CartEmail</td>
+				<td>@c.CartDateTime</td>
+				<td><a title="pickticket" asp-controller="Order" asp-action="PickTicket" asp-route-id="@c.CartId" target="_blank">Pick ticket</a></td>
+				<td><a asp-controller="Order" asp-action="Delete" asp-route-id="@c.CartId" >Delete</a></td>
+			</tr>
+			}
+		</tbody>
+	</table>
+</div>
+
+@*https://forums.asp.net/t/1926415.aspx?how+to+open+new+tab+when+we+click+on+button+in+mvc+4*@

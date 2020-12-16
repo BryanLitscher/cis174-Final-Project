@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using CS174FINALPROJECTLITSCHER.Models;
 using Microsoft.AspNetCore.Identity;
 
+
 namespace CS174FINALPROJECTLITSCHER
 {
     public class Startup
@@ -86,6 +87,11 @@ namespace CS174FINALPROJECTLITSCHER
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
+
+
+
+
         }
     }
 }

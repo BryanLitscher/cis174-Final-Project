@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using CS174FINALPROJECTLITSCHER.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace CS174FINALPROJECTLITSCHER.Controllers
 {
@@ -55,6 +56,7 @@ namespace CS174FINALPROJECTLITSCHER.Controllers
         public async Task<IActionResult> LogOut()
         {
             await signInManager.SignOutAsync();
+            HttpContext.Session.SetString("UserEmail", "");
             return RedirectToAction("Index", "Home");
         }
 
@@ -77,9 +79,14 @@ namespace CS174FINALPROJECTLITSCHER.Controllers
 
                 if (result.Succeeded)
                 {
+                    //User user = await userManager.FindByIdAsync(id);
+                    User user = await userManager.FindByNameAsync(model.Username);
+                    HttpContext.Session.SetString("UserEmail", user.Email);
+
                     if (!string.IsNullOrEmpty(model.ReturnUrl) &&
                         Url.IsLocalUrl(model.ReturnUrl))
                     {
+                        
                         return Redirect(model.ReturnUrl);
                     }
                     else
@@ -93,7 +100,10 @@ namespace CS174FINALPROJECTLITSCHER.Controllers
         }
 
 
-
+        public ViewResult AccessDenied()
+        {
+            return View();
+        }
         //public IActionResult Index()
         //{
         //    return View();

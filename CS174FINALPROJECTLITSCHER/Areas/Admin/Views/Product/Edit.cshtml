@@ -1,0 +1,69 @@
+﻿
+
+
+@model Product
+@{
+	string title = ViewBag.Action + " Product";
+	ViewBag.Title = title;
+}
+
+<h2>@title</h2>
+
+<div class="p-lg-5">
+
+	<form asp-action="Edit" method="post">
+		<div asp-validation-summary="All" class="text-danger"></div>
+
+		<div class="form-group">
+			<label asp-for="productName">Name</label>
+			<input asp-for="productName" class="form-control">
+		</div>
+
+		<div class="form-group">
+			<label asp-for="productDesc">Description</label>
+			<input asp-for="productDesc" class="form-control">
+		</div>
+
+		<div class="form-group">
+			<label asp-for="ImageFile">Description</label>
+			<input asp-for="ImageFile" class="form-control">
+		</div>
+
+		<div class="form-group">
+			<label asp-for="productNominalWeight">Nominal Weight</label>
+			<input asp-for="productNominalWeight" class="form-control">
+		</div>
+
+		<div class="form-group">
+			<label asp-for="productPrice">Price</label>
+			<input asp-for="productPrice" class="form-control">
+		</div>
+
+		<div class="form-group">
+			<label asp-for="HardnessID">Texture</label>
+			<select asp-for="HardnessID" class="form-control">
+				<option value="">select a genre</option>
+				@foreach (Hardness h in ViewBag.Hardnesses)
+				{
+					<option value="@h.HardnessID">@h.Moisture</option>
+				}
+			</select>
+		</div>
+		<div class="form-group">
+			<label asp-for="AppearanceID">Appearance</label>
+			<select asp-for="AppearanceID" class="form-control">
+				<option value="">select an appearance</option>
+				@foreach (Appearance a in ViewBag.Appearances)
+				{
+					<option value="@a.AppearanceID">@a.Color</option>
+				}
+			</select>
+		</div>
+
+
+		<input type="hidden" asp-for="productID" />
+
+		<button type="submit" class="btn btn-primary">@ViewBag.Action</button>
+		<a asp-controller="Product" asp-action="Index" class="btn btn-primary">Cancel</a>
+	</form>
+</div>

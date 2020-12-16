@@ -15,6 +15,8 @@ namespace CS174FINALPROJECTLITSCHER.Controllers
 
 		private ICS174FinalProjectLitscherUnitOfWork data { get; set; }
 
+		
+
 		public HomeController(ICS174FinalProjectLitscherUnitOfWork unit)
 		{
 			data = unit;
@@ -28,19 +30,26 @@ namespace CS174FINALPROJECTLITSCHER.Controllers
 			TempData["message"] ="Item not added to cart";
 			return RedirectToAction("Index", "Home");
 		}
+
 		[Authorize]
 		[HttpPost]
-		public IActionResult Add(ProductListViewModel p)
+		public IActionResult Add(ProductListViewModel p )
 		{
 			string msg = "";
-			var session = new OrdersSession(HttpContext.Session);
+ 			var session = new OrdersSession(HttpContext.Session);
+			//var session = os;
 			var cheeses = session.GetProducts();
-
+			
 			if (p.SelectedProductID < 0)
             {
 				//When remove button is clicked, negative Product ID is returned
+				msg = "" ;
+				foreach ( Product cheese in cheeses)
+                {
+					if((p.SelectedProductID * -1)==cheese.productID) 
+						msg = "Removed: " + cheese.productName;
+				}
 				cheeses.RemoveAll((x) => x.productID == ( -1 * p.SelectedProductID ));
-				msg = "Removed: " + cheeses[(p.SelectedProductID*-1)].productName ;
 			}
             else
             {
@@ -93,7 +102,7 @@ namespace CS174FINALPROJECTLITSCHER.Controllers
         public IActionResult Index(string AppearanceID = "all", string HardnessID = "all")
         {
 
-			var session = new OrdersSession(HttpContext.Session);
+            var session = new OrdersSession(HttpContext.Session);
 			var cheeses = session.GetProducts();
 
 			List<Product> Store = data.Products.List(new QueryOptions<Product> { }).ToList();
